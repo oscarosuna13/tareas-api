@@ -18,7 +18,7 @@ export class UsuariosService {
   }
 
   async findOne(_id: ObjectId) {
-    return this.usuariosModel.findOne({ _id });
+    return this.usuariosModel.findOne({ _id }).populate("tareas", "titulo descripcion -_id").select("tareas  -_id");
   }
 
   async update(_id: ObjectId, updateUsuarioDto: UpdateUsuarioDto) {

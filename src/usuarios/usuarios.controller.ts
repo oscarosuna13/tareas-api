@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Header, Redirect } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
@@ -21,6 +21,11 @@ export class UsuariosController {
   @Get(':_id')
   findOne(@Param('_id') _id: ObjectId) {
     return this.usuariosService.findOne(_id);
+  }
+
+  @Get(':user/:pass')
+  findTareas(@Param('user') user: string, @Param('pass') pass: string) {
+    return this.usuariosService.findTareas(user, pass);
   }
 
   @Patch(':_id')

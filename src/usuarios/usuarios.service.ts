@@ -9,33 +9,8 @@ import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 export class UsuariosService {
   constructor(@InjectModel(Usuarios.name) private usuariosModel: Model<UsuariosDocument>) {}
 
-  async create(createUsuarioDto: CreateUsuarioDto): Promise<Usuarios> {
-    return new this.usuariosModel(createUsuarioDto).save();
-  }
-
-  async findAll() {
-    return this.usuariosModel.find();
-  }
-
-  async findOne(_id: ObjectId) {
-    const data = await this.usuariosModel.findOne({ _id })
-    if(data){
-      return this.usuariosModel.findOne({ _id }).populate("tareas", "titulo descripcion -_id").select("tareas  -_id");
-    }else{
-      return "error"
-    }
-    
-  }
-
   async findTareas(user: string, pass: string) {
     return this.usuariosModel.findOne({ user: user, pass: pass }).populate("tareas", "titulo descripcion -_id").select("tareas  -_id");
   }
 
-  async update(_id: ObjectId, updateUsuarioDto: UpdateUsuarioDto) {
-    return this.usuariosModel.updateOne({ _id }, {$set: {...updateUsuarioDto}});
-  }
-
-  async remove(_id: ObjectId) {
-    return this.usuariosModel.deleteOne({ _id });
-  }
 }

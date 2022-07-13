@@ -14,10 +14,6 @@ export class TareasService {
     return new this.tareasModel(createTareaDto).save();
   }
 
-  async findAll() {
-    return this.tareasModel.find();
-  }
-
   async findOne(_id: ObjectId) {
     return this.tareasModel.findOne({ _id });
   }

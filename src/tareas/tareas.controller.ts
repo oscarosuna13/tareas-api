@@ -13,11 +13,6 @@ export class TareasController {
     return this.tareasService.create(createTareaDto);
   }
 
-  @Get()
-  findAll() {
-    return this.tareasService.findAll();
-  }
-
   @Get(':_id')
   findOne(@Param('_id') _id: ObjectId) {
     return this.tareasService.findOne(_id);

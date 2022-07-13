@@ -4,7 +4,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { TareasModule } from './tareas/tareas.module';
-import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
@@ -12,8 +11,7 @@ import { ConfigModule } from '@nestjs/config';
     MongooseModule.forRoot('mongodb://localhost:27017/gestion_tareas'),
     ConfigModule.forRoot(),
     UsuariosModule,
-    TareasModule,
-    AuthModule],
+    TareasModule],
   controllers: [AppController],
   providers: [AppService],
 })

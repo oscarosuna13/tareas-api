@@ -8,8 +8,11 @@ export type UsuariosDocument = Usuarios & Document;
 
 @Schema()
 export class Usuarios {
+  @Prop({required: true, unique: true})
+  user: string;
+
   @Prop({required: true})
-  nombre: string;
+  pass: string;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tareas' }] })
   tareas: Tareas[];
